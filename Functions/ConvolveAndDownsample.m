@@ -4,8 +4,7 @@
 % t - Downsampling Factor
 
 function ConvolveAndDownsampleOut = ConvolveAndDownsample(I, n, m, t)
-% ConvolutionAndDownsamplingOut = imresize(conv2(BSpline(n, m), BSpline(n, m), I, 'same'), 1 / t, 'box');
-helper = conv2(Bspline(n, m, 0), Bspline(n, m, 0), I, 'same');
+helper = conv2(wjmBSpline(n, m), wjmBSpline(n, m), I, 'same');
 ConvolveAndDownsampleOut = zeros(size(I, 1) / t, size(I, 2) / t);
 for i = 1 : size(I, 1) / t
     for j = 1 : size(I, 2) / t
