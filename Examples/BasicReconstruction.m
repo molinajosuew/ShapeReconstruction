@@ -1,6 +1,6 @@
 clear;
 clc;
-load('Image03.mat');
+load('Image01.mat');
 J = GetSeparableBernsteinImage(Algorithm(ConvolveAndDownsample(I, 8, 1, 1), 4), 4, 4, size(I, 1), size(I, 2));
 figure;
 imshow(I);
