@@ -1,6 +1,8 @@
+% n = degree
+% a & b = resolution
 function NSEC = NonSepExpCoeffs(n, a, b)
-    K1 = DualExpansionCoefficients(n, a);
-    K2 = DualExpansionCoefficients(n, b);
+    K2 = DualExpansionCoefficients(n, a);
+    K1 = DualExpansionCoefficients(n, b);
     NSEC = zeros(n + 1, n + 1, size(K1, 2), size(K2, 2));
 
     for i = 0 : n

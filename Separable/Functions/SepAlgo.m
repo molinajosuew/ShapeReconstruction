@@ -1,4 +1,4 @@
-function AlgorithmOut = Algorithm(I, n)
+function SepAlgorithmOut = SepAlgo(I, n)
 % System of Moment Equations
 A = zeros(2 * (n + 1) ^ 2, (n + 1) ^ 2);
 row = 1;
@@ -31,5 +31,5 @@ for r = 0 : 4
         end
     end
 end
-AlgorithmOut = lsqlin(A, zeros(size(A, 1), 1), [], [], B, eye(size(B, 1), 1), [], [], []);
+SepAlgorithmOut = lsqlin(A, zeros(size(A, 1), 1), [], [], B, eye(size(B, 1), 1), [], [], []);
 end
