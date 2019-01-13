@@ -1,6 +1,6 @@
 clear;
 clc;
-load('Image01.mat');
+load('Image03.mat');
 C = SepAlgo(ConvolveAndDownsample(I, 8, 1, 1), 4);
 J = GetSeparableBernsteinImage(C, 4, 4, size(I, 1), size(I, 2));
 figure;
