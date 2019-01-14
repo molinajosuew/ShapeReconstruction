@@ -1,7 +1,7 @@
 clear;
 clc;
 n = 4;
-load('Image01_50.mat');
+load('Image01_30.mat');
 K = NonSepAlg(ConvolveAndDownsample(I, 2 * n - 1, 1, 1), n);
 J = NonSepBernImg(K, n, size(I, 1), size(I, 2));
 figure;
