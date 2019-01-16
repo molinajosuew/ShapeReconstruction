@@ -1,12 +1,10 @@
 clear;
 clc;
+
 n = 4;
-load('Image01_30.mat');
+load('Image01.mat');
+
 K = NonSepAlg(ConvolveAndDownsample(I, 2 * n - 1, 1, 1), n);
-J = NonSepBernImg(K, n, size(I, 1), size(I, 2));
-figure;
-imshow(I);
-figure;
-imshow(J);
-figure;
-imshow(abs(I - J));
+R = NonSepBernImg(K, n, size(I, 1), size(I, 2));
+
+imshow(cat(2, cat(2, cat(2, cat(2, I, repmat(255, 256, 10)), R), repmat(255, 256, 10)), abs(I - R)));

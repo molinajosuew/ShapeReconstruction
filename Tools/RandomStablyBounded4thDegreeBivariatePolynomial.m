@@ -1,6 +1,6 @@
 function I = RandomStablyBounded4thDegreeBivariatePolynomial(a, b, c, d, k, l)
 A = RandSymmPosDefMatrix(3);
-C = 2 * rand(1, 15) - 1;
+C = (2 * rand(1, 15) - 1) * 100;
 C(1) = 1;
 [XX, YY] = meshgrid(linspace(a, b, k), linspace(c, d, l));
 I = arrayfun(@(x, y) [x ^ 2, x * y, y ^ 2] * A * [x ^ 2, x * y, y ^ 2]', XX, YY);

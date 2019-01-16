@@ -1,6 +1,6 @@
 function NSEC = NonSepExpCoeffs(n, a, b)
-C1 = DualExpansionCoefficients(n, a);
-C2 = DualExpansionCoefficients(n, b);
+C1 = DualExpansionCoefficients(n, a, 1);
+C2 = DualExpansionCoefficients(n, b, 1);
 NSEC = zeros(n + 1, n + 1, size(C2, 2), size(C1, 2));
 for i = 0 : n
     for j = 0 : n - i
