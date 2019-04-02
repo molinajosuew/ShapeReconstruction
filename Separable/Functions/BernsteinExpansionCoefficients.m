@@ -1,5 +1,5 @@
 function BECO = BernsteinExpansionCoefficients(n, r)
-DEC2O = DualExpansionCoefficients(n, r);
+DEC2O = DualExpansionCoefficients(n, r, 1);
 BECO = zeros(n + 1, size(DEC2O, 2));
 for v = 0 : n
     for k = 1 : size(DEC2O, 2)
