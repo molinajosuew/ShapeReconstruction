@@ -1,8 +1,8 @@
-function I = RandomStablyBounded4thDegreeBivariatePolynomial(ra, rb, ca, cb, rN, cN, R)
+function I = RandomStablyBounded4thDegreeBivariatePolynomial(x_a, x_b, y_a, y_b, x_n, y_n, R)
     A = RandSymmPosDefMatrix(3);
     C = rand(1, 15) * R;
     C(1) = 1;
-    [X, Y] = meshgrid(linspace(ca, cb, cN), linspace(ra, rb, rN));
+    [X, Y] = meshgrid(linspace(x_a, x_b, x_n), linspace(y_a, y_b, y_n));
     I = arrayfun(@(x, y) [x ^ 2, x * y, y ^ 2] * A * [x ^ 2, x * y, y ^ 2]', X, Y);
     cnt = 1;
     for i = 0 : 4
