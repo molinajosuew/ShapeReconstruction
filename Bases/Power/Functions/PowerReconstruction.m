@@ -1,4 +1,4 @@
-function [C, D] = ProtoPowerReconstruction(I, n, x_a, x_b, y_a, y_b)
+function [C, D] = PowerReconstruction(I, n, x_a, x_b, y_a, y_b)
     m_x = (size(I, 2) - 1) / (x_b - x_a);
     m_y = (size(I, 1) - 1) / (y_b - y_a);
 
@@ -17,7 +17,7 @@ function [C, D] = ProtoPowerReconstruction(I, n, x_a, x_b, y_a, y_b)
 
     l = max(abs([1 - D_rx + x_a, 1 - D_ry + y_a, size(D, 2) - D_rx + x_a, size(D, 1) - D_ry + y_a]));
     
-    K = ProtoPowerExpansionCoefficients(n + ceil(n / 2), - l, l);
+    K = PowerExpansionCoefficients(n + ceil(n / 2), - l, l);
     K_r = (size(K, 2) + 1) / 2;
     K_x = K_r + 1 - D_rx + x_a : K_r + size(D, 2) - D_rx + x_a;
     K_y = K_r + 1 - D_ry + y_a : K_r + size(D, 1) - D_ry + y_a;
@@ -52,5 +52,5 @@ function [C, D] = ProtoPowerReconstruction(I, n, x_a, x_b, y_a, y_b)
     end
 
     C = quadprog(M' * M, [], [], [], eye(1, size(M, 2)), 1)';
-%     R = lsqlin(M, zeros(size(M, 1), 1), [], [], eye(1, size(M, 2)), 1, [], [])';
+%     C = lsqlin(M, zeros(size(M, 1), 1), [], [], eye(1, size(M, 2)), 1, [], [])';
 end

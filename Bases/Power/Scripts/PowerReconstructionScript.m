@@ -17,7 +17,7 @@ I = GetImageOfPolynomial(P, x_a, x_b, y_a, y_b, x_n, y_n);
 figure;
 imshow(I);
 
-[C, D] = ProtoPowerReconstruction(I, n, x_a, x_b, y_a, y_b);
+[C, D] = PowerReconstruction(I, n, x_a, x_b, y_a, y_b);
 
 figure;
 imshow(D);

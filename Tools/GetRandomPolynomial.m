@@ -1,7 +1,3 @@
-%          n = max degree of poly
-% a, b, c, d = bounds of domain
-%        pad = clearance of image with border
-
 function C = GetRandomPolynomial(n, x_a, x_b, y_a, y_b, x_n, y_n, r, pad)
     [X, Y] = meshgrid(linspace(x_a, x_b, x_n), linspace(y_a, y_b, y_n));
     img = zeros(size(X));

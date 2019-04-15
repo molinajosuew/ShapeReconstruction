@@ -1,10 +1,3 @@
-% INPUT
-%     coeffs = coefficients of poly
-% a, b, c, d = bounds of domain
-%       r, s = resolution of domain
-% OUTPUT
-% img = r by s matrix taking values in {0, 1} of poly p^{-1}((-inf, 0]) \cap [a, b] × [c, d] induced by coeffs
-
 function img = GetImageOfPolynomial(C, x_a, x_b, y_a, y_b, x_n, y_n)
     [X, Y] = meshgrid(linspace(x_a, x_b, x_n), linspace(y_a, y_b, y_n));
     img = zeros(size(X));

@@ -1,6 +1,3 @@
-% n - B-Spline Degree
-% m - B-Spline Dilation Factor
-
 function wjmBSplineOut = wjmBSpline(n, m)
     X = - ceil((n * m + m) / 2) : ceil((n * m + m) / 2);
     B1(1, :) = (- m / 2 < X & X < m / 2) * 1 + (- m / 2 == X | X == m / 2) * .5;

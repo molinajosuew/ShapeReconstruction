@@ -1,3 +1,5 @@
+% This function appears to not be working correctly.
+
 function I = RandomStablyBounded4thDegreeBivariatePolynomial(x_a, x_b, y_a, y_b, x_n, y_n, R)
     A = RandSymmPosDefMatrix(3);
     C = rand(1, 15) * R;

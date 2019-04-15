@@ -1,4 +1,4 @@
-function PC = ProtoPowerExpansionCoefficients(n, a, b)
+function PC = PowerExpansionCoefficients(n, a, b)
     N = n + 1;
     P = zeros(1, N + 1);
     for i = 0 : N
