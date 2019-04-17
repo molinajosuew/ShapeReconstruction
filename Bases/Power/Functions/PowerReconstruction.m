@@ -31,13 +31,13 @@ function [C, D] = PowerReconstruction(I, n, x_a, x_b, y_a, y_b)
 
             for i = 0 : n
                 for j = 0 : n - i
-                    if 0 <= i + r - 1 && 0 <= j + s + 0
+                    if 0 <= i + r - 1
                         M(row + 0, col) = (i + r) * sum(sum(K(j + s + 1, K_y)' * K(i + r + 0, K_x) .* D));
                     else
                         M(row + 0, col) = 0;
                     end
 
-                    if 0 <= i + r + 0 && 0 <= j + s - 1
+                    if 0 <= j + s - 1
                         M(row + 1, col) = (j + s) * sum(sum(K(j + s + 0, K_y)' * K(i + r + 1, K_x) .* D));
                     else
                         M(row + 1, col) = 0;

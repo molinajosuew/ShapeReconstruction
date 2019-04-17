@@ -1,4 +1,4 @@
-function ProtoNonSeparableBernsteinReconstruction(I, n, L)
+function [C, D] = ProtoNonSeparableBernsteinReconstruction(I, n, L)
     m_x = (size(I, 2) - 1) / L;
     m_y = (size(I, 1) - 1) / L;
 
@@ -15,31 +15,22 @@ function ProtoNonSeparableBernsteinReconstruction(I, n, L)
     D_rx = (size(D, 2) - size(I(1 : m_y : end, 1 : m_x : end), 2)) / 2 + 1;
     D_ry = (size(D, 1) - size(I(1 : m_y : end, 1 : m_x : end), 1)) / 2 + 1;
     
-    K = ProtoNonSeparableBernsteinExpansionCoefficients(2 * n - 1, L);
-    K_r = (size(K, 2) + 1) / 2;
-    K_x = K_r + 1 - D_rx + x_a : K_r + size(D, 2) - D_rx + x_a;
-    K_y = K_r + 1 - D_ry + y_a : K_r + size(D, 1) - D_ry + y_a;
+    K = ProtoNonSeparableBernsteinExpansionCoefficients(2 * n - 1, 2 * L);
+    K_r = (size(K, 4) + 1) / 2;
+    K_x = K_r + 1 - D_rx : K_r + size(D, 2) - D_rx;
+    K_y = K_r + 1 - D_ry : K_r + size(D, 1) - D_ry;
 
     M = zeros(2 * (ceil(n / 2) + 1) ^ 2, nchoosek(n + 2, 2));
     row = 1;
 
-    for r = 0 : ceil(n / 2)
-        for s = 0 : ceil(n / 2)
+    for a = 0 : ceil(n / 2)
+        for b = 0 : ceil(n / 2)
             col = 1;
 
             for i = 0 : n
                 for j = 0 : n - i
-                    if 0 <= i + r - 1 && 0 <= j + s + 0
-                        M(row + 0, col) = (i + r) * sum(sum(K(j + s + 1, K_y)' * K(i + r + 0, K_x) .* D));
-                    else
-                        M(row + 0, col) = 0;
-                    end
-
-                    if 0 <= i + r + 0 && 0 <= j + s - 1
-                        M(row + 1, col) = (j + s) * sum(sum(K(j + s + 0, K_y)' * K(i + r + 1, K_x) .* D));
-                    else
-                        M(row + 1, col) = 0;
-                    end
+                    M(row + 0, col) = (ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a - 1, j + b + 0, D, K, K_x, K_y) - ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a, j + b, D, K, K_x, K_y)) * n * ProtoNonSeparableBernsteinFactor(n, a, b, i, j, 2 * L) / L / 2;
+                    M(row + 1, col) = (ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a + 0, j + b - 1, D, K, K_x, K_y) - ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a, j + b, D, K, K_x, K_y)) * n * ProtoNonSeparableBernsteinFactor(n, a, b, i, j, 2 * L) / L / 2;
 
                     col = col + 1;
                 end
