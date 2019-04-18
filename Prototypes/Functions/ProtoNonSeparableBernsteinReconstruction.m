@@ -1,4 +1,4 @@
-function [C, D] = ProtoNonSeparableBernsteinReconstruction(I, n, L)
+function [C, D] = ProtoNonSeparableBernsteinReconstruction(I, n, L, psnr)
     m_x = (size(I, 2) - 1) / L;
     m_y = (size(I, 1) - 1) / L;
 
@@ -14,6 +14,10 @@ function [C, D] = ProtoNonSeparableBernsteinReconstruction(I, n, L)
     D = D_t(D_t_ry - floor((D_t_ry - 1) / m_y) * m_y : m_y : end, D_t_rx - floor((D_t_rx - 1) / m_x) * m_x : m_x : end);
     D_rx = (size(D, 2) - size(I(1 : m_y : end, 1 : m_x : end), 2)) / 2 + 1;
     D_ry = (size(D, 1) - size(I(1 : m_y : end, 1 : m_x : end), 1)) / 2 + 1;
+    
+    if psnr ~= - 1
+        D = imnoise(D, 'gaussian', 0, 10 ^ (- psnr / 10) * mean(mean(D .^ 2)));
+    end
     
     K = ProtoNonSeparableBernsteinExpansionCoefficients(2 * n - 1, 2 * L);
     K_r = (size(K, 4) + 1) / 2;
