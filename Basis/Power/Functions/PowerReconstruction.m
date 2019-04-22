@@ -1,4 +1,4 @@
-function [C, D] = PowerReconstruction(I, n, x_a, x_b, y_a, y_b, z)
+function [C, D] = PowerReconstruction(I, n, x_a, x_b, y_a, y_b, psnr)
     m_x = (size(I, 2) - 1) / (x_b - x_a);
     m_y = (size(I, 1) - 1) / (y_b - y_a);
 
@@ -15,8 +15,8 @@ function [C, D] = PowerReconstruction(I, n, x_a, x_b, y_a, y_b, z)
     D_rx = (size(D, 2) - size(I(1 : m_y : end, 1 : m_x : end), 2)) / 2 + 1;
     D_ry = (size(D, 1) - size(I(1 : m_y : end, 1 : m_x : end), 1)) / 2 + 1;
     
-    if z ~= - 1
-        D = awgn(D, z);
+    if psnr ~= - 1
+        D = imnoise(D, 'gaussian', 0, 10 ^ (- psnr / 10) * mean(mean(D .^ 2)));
     end
 
     l = max(abs([1 - D_rx + x_a, 1 - D_ry + y_a, size(D, 2) - D_rx + x_a, size(D, 1) - D_ry + y_a]));
