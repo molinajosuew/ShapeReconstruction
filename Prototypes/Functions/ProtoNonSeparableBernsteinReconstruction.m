@@ -1,3 +1,5 @@
+% Some variables are deliberately redundant.
+
 function [C, D] = ProtoNonSeparableBernsteinReconstruction(I, n, L, psnr)
     m_x = (size(I, 2) - 1) / L;
     m_y = (size(I, 1) - 1) / L;
@@ -33,8 +35,8 @@ function [C, D] = ProtoNonSeparableBernsteinReconstruction(I, n, L, psnr)
 
             for i = 0 : n
                 for j = 0 : n - i
-                    M(row + 0, col) = (ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a - 1, j + b + 0, D, K, K_x, K_y) - ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a, j + b, D, K, K_x, K_y)) * n * ProtoNonSeparableBernsteinFactor(n, a, b, i, j, 2 * L) / L / 2;
-                    M(row + 1, col) = (ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a + 0, j + b - 1, D, K, K_x, K_y) - ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a, j + b, D, K, K_x, K_y)) * n * ProtoNonSeparableBernsteinFactor(n, a, b, i, j, 2 * L) / L / 2;
+                    M(row + 0, col) = (ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a - 1, j + b + 0, D, K, K_x, K_y) - ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a, j + b, D, K, K_x, K_y)) * n * ProtoNonSeparableBernsteinFactor(n, a, b, i, j, 2 * L) / (L * 2);
+                    M(row + 1, col) = (ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a + 0, j + b - 1, D, K, K_x, K_y) - ProtoNonSeparableBernsteinMoment(n + a + b - 1, i + a, j + b, D, K, K_x, K_y)) * n * ProtoNonSeparableBernsteinFactor(n, a, b, i, j, 2 * L) / (L * 2);
 
                     col = col + 1;
                 end
