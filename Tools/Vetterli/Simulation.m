@@ -38,8 +38,8 @@ coef_method     = 1;        % 1: direct input
                             % 2: loading from a file
 switch coef_method
     case 1
-        %poly_coefs      = [13 8 -4 -2 0 -1];
-        poly_coefs      = [10 0 0 -1 0 -1 0 0 0 0 0 0 0 0 0];
+        poly_coefs      = [13 8 -4 -2 0 -1];
+%         poly_coefs      = [10 0 0 -1 0 -1 0 0 0 0 0 0 0 0 0];
         
     case 2
         Poly_coef_load
