@@ -55,6 +55,6 @@ function [C, D] = PowerReconstruction(I, n, x_a, x_b, y_a, y_b, psnr)
         end
     end
 
-    C = quadprog(M' * M, [], [], [], eye(1, size(M, 2)), 1)';
+    C = quadprog(M' * M, [], [], [], eye(1, size(M, 2)), 1, [], [], [], optimset('display', 'off'))';
 %     C = lsqlin(M, zeros(size(M, 1), 1), [], [], eye(1, size(M, 2)), 1, [], [])';
 end
