@@ -1,5 +1,5 @@
 function [P, I] = GetRandomNonSeparableBernsteinPolynomial(n, L)
-    [X, Y] = meshgrid(linspace(0, L, 2 ^ 7 + 1), linspace(0, L, 2 ^ 7 + 1));
+    [X, Y] = meshgrid(linspace(0, L, 2 ^ 9 + 1), linspace(0, L, 2 ^ 9 + 1));
     I = zeros(size(X));
     while I(1, 1) == 1 || length(unique(I(1, :))) ~= 1 || length(unique(I(end, :))) ~= 1 || length(unique(I(:, 1))) ~= 1 || length(unique(I(:, end))) ~= 1 || length(unique(I)) ~= 2
         I = zeros(size(X));
