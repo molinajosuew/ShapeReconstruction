@@ -1,4 +1,4 @@
-function I = RandomStablyBounded4thDegreeBivariatePolynomial(x_a, x_b, y_a, y_b, x_n, y_n)
+function I = GetRandomStablyBoundedPolynomial(x_a, x_b, y_a, y_b, x_n, y_n)
     A = RandSymmPosDefMatrix();
     [X, Y] = meshgrid(linspace(x_a, x_b, x_n), linspace(y_a, y_b, y_n));
     while true
