@@ -1,4 +1,4 @@
-function M = RandSymmPosDefMatrix()
+function M = GetRandomSymmetricPositiveDefiniteMatrix()
     V = zeros(3, 3);
 
     V(1, :) = (2 * rand() - 1) * [1, 1, 1];

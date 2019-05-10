@@ -1,4 +1,4 @@
-function N = ProtoNonSeparableBernsteinExpansionCoefficients(n, L)
+function N = NonSeparableExpansionCoefficients(n, L)
     P = PowerExpansionCoefficients(n, - L, L);
     N = zeros(n, n, n, size(P, 2), size(P, 2));
     

@@ -13,12 +13,12 @@ daub_filtername=['db' num2str(m)];
 p=dbwavf(daub_filtername); p=p*2; %Daubechies filters of order m
 
 %  B-spline of order m (uncomment if you wish to use it)
-flag=1;
-p=[ ];
-for k=0:m
-    p=[p;nchoosek(m,k)];
-end
-p=p*2^(-m+1);
+% flag=1;
+% p=[ ];
+% for k=0:m
+%     p=[p;nchoosek(m,k)];
+% end
+% p=p*2^(-m+1);
 
 N=length(p); %filter support [0,N-1]. In the B-spline case N-1 coincides with the order m
 M=N-1;

@@ -16,8 +16,8 @@ y_n = m_y * L + 1;
 
 while true
 %     I = GetImageOfPowerPolynomial(GetRandomPowerPolynomial(n, - 5, 5, - 5, 5, false), - 5, 5, - 5, 5, x_n, y_n);
-    I = GetImageOfNonSeparableBernsteinPolynomial(GetRandomNonSeparableBernsteinPolynomial(n, L), L, x_n, y_n);
-    R = GetImageOfNonSeparableBernsteinPolynomial(ProtoNonSeparableBernsteinReconstruction(I, n, L, psnr), L, x_n, y_n);
+    I = GetImageOfNonSeparable(GetRandomNonSeparable(n, L), L, x_n, y_n);
+    R = GetImageOfNonSeparable(NonSeparableReconstruction(I, n, L, psnr), L, x_n, y_n);
     
     if abs(1 - SorensenDiceCoefficient(I, R)) < 0.01
         imshow(abs(I - R));

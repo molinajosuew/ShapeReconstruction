@@ -1,4 +1,4 @@
-function I = GetImageOfNonSeparableBernsteinPolynomial(C, L, x_n, y_n)
+function I = GetImageOfNonSeparable(C, L, x_n, y_n)
     [X, Y] = meshgrid(linspace(0, L, x_n), linspace(0, L, y_n));
     I = zeros(size(X));
     n = (sqrt(8 * size(C, 2) + 1) - 3) / 2; % deduce degree
