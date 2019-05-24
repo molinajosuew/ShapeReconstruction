@@ -10,8 +10,8 @@ function N = NonSeparableExpansionCoefficients(n, L)
                 for a = 0 : k - i - j
                     for b = 0 : k - i - j - a
                         c = k - i - j - a - b;
-
-                        S = S + nchoosek(k, i) .* nchoosek(k - i, j) .* factorial(k - i - j) .* L .^ (a - k) .* (- 1) .^ (b + c) .* (P(1 + c + j, :)' * P(1 + b + i, :)) ./ factorial(a) ./ factorial(b) ./ factorial(c);
+                        
+                        S = S + nchoosek(n, i) * nchoosek(n - i, j) * factorial(n - i - j) / (factorial(a) * factorial(b) * factorial(c)) * L ^ (a - n) * (- 1) ^ (b + c) * P(1 + c + j, :)' * P(1 + b + i, :);
                     end
                 end
 
