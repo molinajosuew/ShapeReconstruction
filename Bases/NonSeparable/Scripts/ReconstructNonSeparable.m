@@ -2,9 +2,9 @@ clear;
 clc;
 
 n = 4;
-L = 25;
-m_x = 20;
-m_y = 20;
+L = 20;
+m_x = 25;
+m_y = 25;
 psnr = 50;
 
 x_n = m_x * L + 1;
@@ -14,7 +14,7 @@ I = GetImageOfNonSeparable(IC, L, x_n, y_n);
 [RC, D] = NonSeparableReconstruction(I, n, L, psnr);
 R = abs(I - GetImageOfNonSeparable(RC, L, x_n, y_n));
 
-figure;
-imshow(D);
+% figure;
+% imshow(D);
 figure;
 imshow(R);

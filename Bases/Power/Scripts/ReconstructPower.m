@@ -2,13 +2,13 @@ clear;
 clc;
 
 n = 4;
-x_a = - 1;
-x_b = 1;
-y_a = - 1;
-y_b = 1;
-m_x = 250;
-m_y = 250;
-psnr = - 1;
+x_a = 0;
+x_b = 20;
+y_a = 0;
+y_b = 20;
+m_x = 25;
+m_y = 25;
+psnr = 30;
 
 x_n = m_x * (x_b - x_a) + 1;
 y_n = m_y * (y_b - y_a) + 1;
