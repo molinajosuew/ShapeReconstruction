@@ -1,4 +1,4 @@
-function [P, I] = GetRandomPowerPolynomial(n, x_a, x_b, y_a, y_b, is_other_mode)
+function [P, I] = GetRandomPower(n, x_a, x_b, y_a, y_b, is_other_mode)
     [X, Y] = meshgrid(linspace(x_a, x_b, 2 ^ 7 + 1), linspace(y_a, y_b, 2 ^ 7 + 1));
     I = zeros(size(X));
     while I(1, 1) == 1 || length(unique(I(1, :))) ~= 1 || length(unique(I(end, :))) ~= 1 || length(unique(I(:, 1))) ~= 1 || length(unique(I(:, end))) ~= 1 || length(unique(I)) ~= 2
