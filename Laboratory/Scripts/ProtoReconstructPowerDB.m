@@ -1,12 +1,15 @@
+clear;
+clc;
+
 n = 4;
 
-x_a = - 175;
-x_b = 175;
-y_a = - 175;
-y_b = 175;
+x_a = 0;
+x_b = 2 ^ 4;
+y_a = 0;
+y_b = 2 ^ 4;
 
-m_x = 1;
-m_y = 1;
+m_x = 2 ^ 5;
+m_y = 2 ^ 5;
 
 psnr = - 1;
 
@@ -23,7 +26,7 @@ imshow(I);
 figure;
 imshow(D);
 
-R = GetImageOfPowerPolynomial(C, x_a, x_b, y_a, y_b, x_n, y_n);
+R = GetImageOfPower(C, x_a, x_b, y_a, y_b, x_n, y_n);
 figure;
 imshow(R);
 

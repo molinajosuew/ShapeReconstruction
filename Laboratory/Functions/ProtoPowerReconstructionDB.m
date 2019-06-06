@@ -7,7 +7,7 @@ function [C, D] = ProtoPowerReconstructionDB(I, n, x_a, x_b, y_a, y_b, psnr)
         return;
     end
     
-    D_t = conv2(dbwavf("db" + (n + ceil(n / 2))), dbwavf("db" + (n + ceil(n / 2))), I);
+    D_t = conv2(dbwavf("db" + (n + ceil(n / 2) + 1)), dbwavf("db" + (n + ceil(n / 2) + 1)), I);
     D_t_rx = (size(D_t, 2) - size(I, 2)) / 2 + 1;
     D_t_ry = (size(D_t, 1) - size(I, 1)) / 2 + 1;
 
@@ -21,7 +21,7 @@ function [C, D] = ProtoPowerReconstructionDB(I, n, x_a, x_b, y_a, y_b, psnr)
 
     l = max(abs([1 - D_rx + x_a, 1 - D_ry + y_a, size(D, 2) - D_rx + x_a, size(D, 1) - D_ry + y_a]));
     
-    K = ProtoPowerExpansionCoefficientsDB(n + ceil(n / 2), - l - 50, l + 50);
+    K = ProtoPowerExpansionCoefficientsDB(n + ceil(n / 2) + 1, - l - 50, l + 50);
     K_r = (size(K, 2) + 1) / 2;
     T = 9; % Added a correction term.
     K_x = K_r + 1 - D_rx + x_a + T : K_r + size(D, 2) - D_rx + x_a + T;
