@@ -1,8 +1,6 @@
-function PC = ProtoPowerExpansionCoefficientsDB(n, a, b)
-    N = n + 1;
-    W = 2 * dbaux(N);
-    PC = PolCoeffs(N, 0, W, a, b);
-    for k = 1 : n
-        PC(1 + k, :) = PolCoeffs(N, k, W, a, b);
+function C = ProtoPowerExpansionCoefficientsDB(n, a, b)
+    P = 2 * dbwavf("db" + num2str(n));
+    for k = 0 : n - 1
+        C(1 + k, :) = PolCoeffs(n, k, P, a - 1, b + 1 - mod(n, 2));
     end
 end

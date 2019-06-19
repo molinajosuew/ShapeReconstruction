@@ -12,7 +12,8 @@ qcoeffs=Qpol(m,p,m-1-k);
 l=0;
 for j=-(M-a-(mod(m,2)==0)):b-1 %The exact number of coefficients involved in the formula is b-a+M-1
     l=l+1;
-    c(l)=factorial(k)/factorial(m-1)*polyval(qcoeffs,j+(mod(m,2)==1)*.5);
+%     c(l)=factorial(k)/factorial(m-1)*polyval(qcoeffs,j+(mod(m,2)==1)*.5);
+    c(l)=factorial(k)/factorial(m-1)*polyval(qcoeffs,j+(mod(m,2)==1));
     %c(j+M+1)=factorial(k)/factorial(m-1)*polyval(qcoeffs,j);
 end
    
