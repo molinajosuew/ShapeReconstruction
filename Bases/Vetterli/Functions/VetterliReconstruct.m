@@ -1,4 +1,4 @@
-function [QP_E, QP] = VetterliReconstruct(binary_image, x_a, x_b, y_a, y_b, x_n, y_n, psnr)
+function [QP_E, QP, pixelized_noisy] = VetterliReconstruct(binary_image, x_a, x_b, y_a, y_b, x_n, y_n, psnr)
     x_range = linspace(x_a, x_b, x_n);
     y_range = linspace(y_a, y_b, y_n);
     [pixelized, m_x, m_y] = pixelization(binary_image, x_range, y_range, 4);

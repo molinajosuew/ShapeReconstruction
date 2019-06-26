@@ -19,9 +19,9 @@ for i = 1 : N
     %     I = GetImageOfNonSeparableBernsteinPolynomial(GetRandomNonSeparableBernsteinPolynomial(n, L), L, x_n, y_n);
     I = reshape(II(i, :, :), [size(II, 2), size(II, 3)]);
     
-    D(i, 1) = SorensenDiceCoefficient(I, GetImageOfPowerPolynomial(PowerReconstruction(I, n, 0, L, 0, L, psnr), 0, L, 0, L, x_n, y_n));
+    D(i, 1) = SorensenDiceCoefficient(I, GetImageOfPower(PowerReconstruction(I, n, 0, L, 0, L, psnr), 0, L, 0, L, x_n, y_n));
     
-    D(i, 2) = SorensenDiceCoefficient(I, GetImageOfNonSeparableBernsteinPolynomial(ProtoNonSeparableBernsteinReconstruction(I, n, L, psnr), L, x_n, y_n));
+    D(i, 2) = SorensenDiceCoefficient(I, GetImageOfNonSeparable(NonSeparableReconstruction(I, n, L, psnr), L, x_n, y_n));
     
     [QP_E, QP] = VetterliReconstruct(I, 0, L, 0, L, x_n, y_n, psnr);
     D(i, 3) = SorensenDiceCoefficient(I, QP);
