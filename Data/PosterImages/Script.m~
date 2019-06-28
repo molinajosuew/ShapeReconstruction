@@ -1,15 +1,15 @@
-for N = 91 : 100
+for N = 14 : 100
     %%%%%%%%%%%%%%
     % Parameters %
     %%%%%%%%%%%%%%
     
     n = 4;
-    x_a = - 5;
-    x_b = 5;
-    y_a = - 5;
-    y_b = 5;
-    m_x = 2 ^ 7;
-    m_y = 2 ^ 7;
+    x_a = 0;
+    x_b = 20;
+    y_a = 0;
+    y_b = 20;
+    m_x = 2 ^ 5;
+    m_y = 2 ^ 5;
     
     %%%%%%%%%%%%
     % Computed %
@@ -23,8 +23,8 @@ for N = 91 : 100
     % Images %
     %%%%%%%%%%
     
-    I = GetImageOfPower(GetRandomPower(n, x_a, x_b, y_a, y_b, false), x_a, x_b, y_a, y_b, x_n, y_n);
-%     I = GetImageOfNonSeparable(GetRandomNonSeparable(n, L), L, x_n, y_n);
+    % I = GetImageOfPower(GetRandomPower(n, x_a, x_b, y_a, y_b, false), x_a, x_b, y_a, y_b, x_n, y_n);
+    I = GetImageOfNonSeparable(GetRandomNonSeparable(n, L), L, x_n, y_n);
     
     %%%%%%%%%%
     % Saving %
@@ -40,19 +40,20 @@ for N = 91 : 100
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
         [R_V, ~, D] = VetterliReconstruction(I, x_a, x_b, y_a, y_b, x_n, y_n, psnr);
+        R_B = GetImageOfNonSeparable(C_R_B, L, x_n, y_n);
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % Pick the best non-separable reconstruction out of 100 %
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
         best = - 1;
-        for j = 1 : 100
-            R_B_candidate = GetImageOfNonSeparable(NonSeparableReconstruction(I, n, L, psnr), L, x_n, y_n);
-            if SorensenDiceCoefficient(I, R_B_candidate) > best
-                best = SorensenDiceCoefficient(I, R_B_candidate);
-                R_B = R_B_candidate;
+        for j = 1 : 25
+            C_R_B = NonSeparableReconstruction(I, n, L, psnr);
+            if SorensenDiceCoefficient(I, C_R_B) > best
+                best = SorensenDiceCoefficient(I, C_R_B);
+                C_R_B_best = C_R_B;
             end
         end
-        
-        %%%%%%%%%%
-        % Saving %
-        %%%%%%%%%%
         
         imwrite(ind2rgb(im2uint8(mat2gray(D)), parula(256)), path + N + "/D.png");
         imwrite(ind2rgb(im2uint8(mat2gray(abs(I - R_B))), parula(256)), path + N + "/R_B_" + psnr + ".png");
