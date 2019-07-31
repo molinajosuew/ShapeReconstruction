@@ -1,9 +1,9 @@
-function [C, D] = ProtoPowerReconstructionDB(I, n, psnr, t)    
-    S = ScalingIntegers(2 * dbwavf("db" + (n + ceil(n / 2) + 1)));    
-    D = conv2(S, S, I);    
+function [C, D] = ProtoPowerReconstructionDB(I, n, psnr, t)
+    S = ScalingIntegers(2 * dbwavf("db" + (n + ceil(n / 2) + 1)));
+    D = conv2(S, S, I);
     if psnr ~= - 1
         D = imnoise(D, 'gaussian', 0, 10 ^ (- psnr / 10) * mean(mean(D .^ 2)));
-    end    
+    end
     K = ProtoPowerExpansionCoefficientsDB(n + ceil(n / 2) + 1, - length(D) - 50, length(D) + 50);
     M = zeros(2 * (ceil(n / 2) + 1) ^ 2, nchoosek(n + 2, 2));
     row = 1;
