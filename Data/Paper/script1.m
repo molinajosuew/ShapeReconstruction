@@ -3,7 +3,7 @@ clc;
 
 load('/home/wjmolina/Documents/GitHub/ShapeReconstruction/Data/Paper/05/dat.mat', 'I');
 
-psnr = 50;
+psnr = 100;
 
 for L = [1, 10, 20]
     % Power Reconstruction
