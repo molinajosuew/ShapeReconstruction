@@ -42,4 +42,6 @@ for r = 0 : ceil(n / 2)
 end
 
 R = GetImageOfPower(quadprog(M' * M, [], [], [], eye(1, size(M, 2)), 1, [], [], [], optimset('display', 'off'))', 0, size(I, 1), 0, size(I, 2), 2 ^ 9 + 1, 2 ^ 9 + 1);
+imshow(I);
+figure;
 imshow(abs(I - R));

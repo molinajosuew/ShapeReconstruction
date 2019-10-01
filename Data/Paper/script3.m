@@ -37,7 +37,7 @@ while true
     
     [~, Vet_rec, ~] = VetterliReconstruction(I, x_a, x_b, y_a, y_b, x_n, y_n, psnr);
     
-    if abs(SorensenDiceCoefficient(I, R_B_best) - SorensenDiceCoefficient(I, Vet_rec)) < 0.01
+    if abs(SorensenDiceCoefficient(I, R_B_best) - SorensenDiceCoefficient(I, Vet_rec)) < 0.005
         break;
     end
     
@@ -48,5 +48,7 @@ end
 
 figure;
 imshow(abs(I - R_B_best));
+disp(SorensenDiceCoefficient(I, R_B_best));
 figure;
 imshow(abs(I - Vet_rec));
+disp(SorensenDiceCoefficient(I, Vet_rec));
