@@ -1,16 +1,21 @@
 clear;
 clc;
 
-n = 4;
-L = 2 ^ 5;
-m_x = 2 ^ 4;
-m_y = 2 ^ 4;
-psnr = - 1;
+n = 100;
+res = zeros(n, 8);
 
-x_n = m_x * L + 1;
-y_n = m_y * L + 1;
+for j = 1 : n
+    [~, I] = GetRandomNonSeparable(4, 3);
+    for i = 7 : - 1 : 0
+        l = 2 ^ i;
+        R = GetImageOfNonSeparable(NonSeparableReconstruction(I, 4, l, - 1), 1, 257, 257);
+        if SorensenDiceCoefficient(I, ~ R) > SorensenDiceCoefficient(I, R)
+            R = ~ R;
+        end
+        res(j, i + 1) = SorensenDiceCoefficient(I, R);
+    end
+end
 
-[RC, D] = NonSeparableReconstruction(I, n, L, psnr);
-R = GetImageOfNonSeparable(RC, L, x_n, y_n);
-
-imshow(abs(I - R));
+boxplot(res);
+xlabel('Triangle (0, 0), (0, 2^{k-1}), (2^{k-1}, 0)');
+ylabel('Sørensen–Dice Coefficient');

@@ -7,7 +7,7 @@ n = 4;
 k = 4;
 L = 500;
 
-N = NonSeparableBernsteinExpansionCoefficients(n, L);
+N = NonSeparableExpansionCoefficients(n, L);
 N = N(:, :, :, 501 : end, 501 : end);
 [X, Y] = meshgrid(0 : L, 0 : L);
 

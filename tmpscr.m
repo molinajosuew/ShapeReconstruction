@@ -1,6 +1,5 @@
 % Generate a ton of images that reconstruct well for us.
 % Reconstruct with and record the errors of our method and their method.
-% Boxplot that shit.
 
 clear;
 clc;
