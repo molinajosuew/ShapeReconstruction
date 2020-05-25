@@ -1,4 +1,4 @@
-function [C, D] = NonSeparableReconstruction(I, n, L, psnr)
+function [C, D] = NonSeparableReconstruction(I, n, L, psnr, c)
     m_x = (size(I, 2) - 1) / L;
     m_y = (size(I, 1) - 1) / L;
 
@@ -19,7 +19,9 @@ function [C, D] = NonSeparableReconstruction(I, n, L, psnr)
         D = imnoise(D, 'gaussian', 0, 10 ^ (- psnr / 10) * mean(mean(D .^ 2)));
     end
     
-    K = NonSeparableExpansionCoefficients(2 * n - 1, 2 * L);
+    newL = c * L;
+    
+    K = NonSeparableExpansionCoefficients(2 * n - 1, newL);
     K_c = (size(K, 4) + 1) / 2;
     K_x = K_c + 1 - D_x : K_c + size(D, 2) - D_x;
     K_y = K_c + 1 - D_y : K_c + size(D, 1) - D_y;
@@ -33,8 +35,8 @@ function [C, D] = NonSeparableReconstruction(I, n, L, psnr)
 
             for i = 0 : n
                 for j = 0 : n - i
-                    A(row + 0, col) = (NonSeparableMoment(n + a + b - 1, i + a - 1, j + b + 0, D, K, K_x, K_y) - NonSeparableMoment(n + a + b - 1, i + a, j + b, D, K, K_x, K_y)) * n * NonSeparableFactor(n, a, b, i, j, 2 * L) / (2 * L);
-                    A(row + 1, col) = (NonSeparableMoment(n + a + b - 1, i + a + 0, j + b - 1, D, K, K_x, K_y) - NonSeparableMoment(n + a + b - 1, i + a, j + b, D, K, K_x, K_y)) * n * NonSeparableFactor(n, a, b, i, j, 2 * L) / (2 * L);
+                    A(row + 0, col) = (NonSeparableMoment(n + a + b - 1, i + a - 1, j + b + 0, D, K, K_x, K_y) - NonSeparableMoment(n + a + b - 1, i + a, j + b, D, K, K_x, K_y)) * n * NonSeparableFactor(n, a, b, i, j, newL) / newL;
+                    A(row + 1, col) = (NonSeparableMoment(n + a + b - 1, i + a + 0, j + b - 1, D, K, K_x, K_y) - NonSeparableMoment(n + a + b - 1, i + a, j + b, D, K, K_x, K_y)) * n * NonSeparableFactor(n, a, b, i, j, newL) / newL;
 
                     col = col + 1;
                 end
